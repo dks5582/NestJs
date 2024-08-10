@@ -4,6 +4,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { PrismaClientExceptionFilter } from './prisma-client-exception/prisma-client-exception.filter';
 
+//https://www.prisma.io/blog/nestjs-prisma-rest-api-7D056s1BmOL0
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
