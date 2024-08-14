@@ -6,6 +6,8 @@ import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ArticleEntity } from './entities/article.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
 
+//https://wanago.io/2023/12/04/api-nestjs-raw-sql-prisma-postgresql-range-types/
+
 @Controller('articles')
 @ApiTags('articles')
 export class ArticlesController {
