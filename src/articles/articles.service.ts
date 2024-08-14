@@ -12,14 +12,18 @@ export class ArticlesService {
     return this.prisma.article.create({data: createArticleDto});
   }
 
-  findAll() {
+  async findAll() {
     //return `This action returns all articles`;
-    return this.prisma.article.findMany({
-      where: {published: true},
-      include: {
-        author: true,
-      },
-    });
+    //return this.prisma.$queryRaw`SELECT * FROM Article`;
+    await this.prisma.$queryRaw`SELECT * FROM Article`;
+    
+    //return result;
+    // return this.prisma.article.findMany({
+    //   where: {published: true},
+    //   include: {
+    //     author: true,
+    //   },
+    // });
   }
 
   finddrafts(){
