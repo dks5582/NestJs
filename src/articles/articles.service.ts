@@ -12,10 +12,10 @@ export class ArticlesService {
     return this.prisma.article.create({data: createArticleDto});
   }
 
-  async findAll() {
+  findAll() {
     //return `This action returns all articles`;
-    //return this.prisma.$queryRaw`SELECT * FROM Article`;
-    await this.prisma.$queryRaw`SELECT * FROM Article`;
+    return this.prisma.$queryRaw`SELECT * FROM public."Article"`;
+    //const result = await this.prisma.$queryRaw`SELECT * FROM Article`;
     
     //return result;
     // return this.prisma.article.findMany({
@@ -35,20 +35,32 @@ export class ArticlesService {
     });
   }
 
-  findOne(id: number) {
+  async findOne(title: string) {
     //return `This action returns a #${id} article`;
-    return this.prisma.article.findUnique({
-      where: { id },
-      include: {
-        author: true,
-      },
-    });
+    const result = await this.prisma.$queryRaw`SELECT * FROM public."Article" where title=${title}`;
+    
+    return result;
+    // return this.prisma.article.findUnique({
+    //   where: { id },
+    //   include: {
+    //     author: true,
+    //   },
+    // });
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
+
+  async update(id: number, updateArticleDto: UpdateArticleDto) {
     //return `This action updates a #${id} article`;
-    return this.prisma.article.update({where: { id }, data: updateArticleDto,});
+    // const qry = this.prisma.article.fields.  `update public."Article" set ${updateArticleDto} where id=${id}`;
+    // console.log(qry);
+    const result = await this.prisma.$executeRawUnsafe(`update public."Article" set ${updateArticleDto} where id=${id}`);
+
+    return result;
   }
+  // update(id: number, updateArticleDto: UpdateArticleDto) {
+  //   //return `This action updates a #${id} article`;
+  //   return this.prisma.article.update({where: { id }, data: updateArticleDto,});
+  // }
 
   remove(id: number) {
     //return `This action removes a #${id} article`;

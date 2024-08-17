@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength, IsNumber } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength} from "class-validator";
 
 export class CreateArticleDto {
+ 
     @IsString()
     @IsNotEmpty()
     @MinLength(5)
@@ -25,7 +26,7 @@ export class CreateArticleDto {
     @ApiProperty({required: false, default: false})
     published?: boolean = false;
 
-    @IsNumber()
-    @ApiProperty()
-    authorId: number;
+    // @IsNumber()
+    // @ApiProperty()
+    // authorId: number;
 }
